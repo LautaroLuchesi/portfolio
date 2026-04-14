@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio | Lautaro Luchesi</title>
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --surface: #ffffff;
+      --surface-2: #f8fafc;
+      --text: #0f172a;
+      --muted: #475569;
+      --line: #e2e8f0;
+      --accent: #111827;
+      --shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+      --radius-xl: 28px;
+      --radius-lg: 20px;
+      --radius-md: 14px;
+      --max: 1180px;
+    }
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-container {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      padding: 14px 0;
+    }
+
+    .nav-logo {
+      font-weight: bold;
+      font-size: 1.1rem;
+      color: var(--text);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-links a {
+      font-size: 0.95rem;
+      color: var(--muted);
+      transition: 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    #top,
+    #sobre-mi,
+    #experiencia,
+    #proyectos,
+    #contacto {
+      scroll-margin-top: 70px;
+    }
+
+    .profile-image {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 18px;
+    }
+
+    .profile-image img {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #e2e8f0;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .sobre-mi p {
+      font-size: 1.15rem;
+      line-height: 1.8;
+      max-width: 600px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .section {
+      margin-top: 28px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+    }
+
+    .hero {
+      margin-top: 28px;
+      padding: 40px;
+      display: grid;
+      grid-template-columns: 1.1fr 1.0fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .hero-text {
+      margin-top: 37px;
+    }
+
+    .hero-text p {
+      font-size: 1.2rem;
+      line-height: 1.8;
+      max-width: 750px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 8px 14px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--surface);
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-size: clamp(2.2rem, 4vw, 4.4rem);
+      line-height: 1.05;
+      margin-bottom: 18px;
+      letter-spacing: -0.03em;
+    }
+
+    h2 {
+      font-size: 2rem;
+      line-height: 1.1;
+      margin-bottom: 14px;
+      letter-spacing: -0.02em;
+    }
+
+    h3 {
+      font-size: 1.55rem;
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+
+    h4 {
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    p {
+      color: var(--muted);
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 0 18px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      font-weight: bold;
+      transition: 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+    }
+
+    .profile-box {
+      padding: 24px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+    }
+
+    .profile-box h3 {
+      text-align: center;
+    }
+
+    .profile-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .profile-list p {
+      line-height: 1.55;
+      font-size: 0.95rem;
+    }
+
+    .profile-list span {
+      font-size: 1.1rem;
+      color: var(--text);
+      font-weight: bold;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+
+    .block {
+      padding: 28px;
+    }
+
+
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .tag {
+      padding: 10px 14px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--surface-2);
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .experience-list {
+      display: grid;
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .experience-item {
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      background: var(--surface-2);
+
+      font-size: 1.08rem;
+      line-height: 1.75;
+    }
+
+    .experience-item strong {
+      display: block;
+      font-size: 1.25rem;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .experience-item em {
+      display: inline-block;
+      font-style: normal;
+      color: var(--muted);
+      font-size: 1.02rem;
+      margin-bottom: 12px;
+    }
+
+    .experience-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+      transition: 0.2s ease;
+    }
+
+    .experience-item ul,
+    .project-body ul {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      padding-left: 18px;
+      color: var(--muted);
+      display: grid;
+      gap: 8px;
+    }
+
+    .experience-date {
+      display: block;
+      font-size: 0.95rem;
+      color: #64748b;
+      margin-bottom: 6px;
+    }
+
+    .projects-header {
+      padding: 6px 2px 0;
+      max-width: 850px;
+    }
+
+    .projects {
+      display: grid;
+      gap: 28px;
+      margin-top: 22px;
+    }
+
+    .project {
+      overflow: hidden;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+
+    .project-body,
+    .project-media {
+      padding: 30px;
+    }
+
+    .project-media {
+      padding: 30px 0;
+      background: var(--surface-2);
+      border-left: 1px solid var(--line);
+      display: flex;
+      justify-content: center;
+    }
+
+    .project-media img {
+      width: 80%;
+      max-width: 850px;
+      height: auto;
+      border-radius: 16px;
+      object-fit: contain;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+
+      display: block;
+      margin: 0 auto;
+    }
+
+    .media-placeholder {
+      width: 100%;
+      min-height: 290px;
+      border: 1px dashed #cbd5e1;
+      border-radius: var(--radius-lg);
+      background: white;
+      color: #64748b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .project-meta {
+      font-size: 0.95rem;
+      color: #64748b;
+      margin-bottom: 10px;
+    }
+
+    .project-section {
+      margin-top: 18px;
+    }
+
+    .project-section p,
+    .project-section li {
+      color: var(--muted);
+    }
+
+    .project-actions,
+    .contact-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .footer-contact {
+      padding: 34px;
+      margin-bottom: 30px;
+    }
+
+    .card,
+    .experience-item,
+    .project {
+      transition: 0.2s ease;
+    }
+
+    .card:hover,
+    .experience-item:hover,
+    .project:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    @media (max-width: 980px) {
+
+      .hero,
+      .grid-2,
+      .project-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .project-media {
+        border-left: none;
+        border-top: 1px solid var(--line);
+      }
+    }
+
+    .image-title {
+      display: inline-block;
+      margin: 0 auto 14px;
+      padding: 8px 18px;
+      border-radius: 999px;
+      background: #0f172a;
+      color: #ffffff;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-align: center;
+    }
+
+    .image-block {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 20px;
+      padding: 22px;
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
+      transition: 0.2s ease;
+      text-align: center;
+    }
+
+    .image-block:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 30px rgba(15, 23, 42, 0.1);
+    }
+
+    .project-images {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .project-images img {
+      width: 100%;
+      height: auto;
+      border-radius: 16px;
+    }
+
+    .image-caption {
+      margin-top: 16px;
+      line-height: 1.7;
+    }
+
+    @media (max-width: 640px) {
+
+      .hero,
+      .block,
+      .project-body,
+      .project-media,
+      .footer-contact {
+        padding: 22px;
+      }
+
+      .container {
+        width: min(var(--max), calc(100% - 20px));
+      }
+
+      h2 {
+        font-size: 1.7rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="nav-container">
+
+      <div class="nav-logo">
+        Lautaro Luchesi
+      </div>
+
+      <nav class="nav-links">
+        <a href="#top">Inicio</a>
+        <a href="#sobre-mi">Sobre mí</a>
+        <a href="#experiencia">Experiencia</a>
+        <a href="#proyectos">Proyectos</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+
+    </div>
+  </header>
+  <main class="container">
+    <section id="top" class="hero card">
+      <div class="hero-text">
+        <div class="eyebrow">Portfolio · Data Analyst</div>
+        <h1>Lautaro Luchesi</h1>
+        <p>
+          Data Analyst en formación con experiencia práctica trabajando con datos reales. Me enfoco en transformar
+          información en insights claros y accionables, apoyando la toma de decisiones y detectando oportunidades de
+          mejora en el negocio.
+        </p>
+
+        <div class="button-row">
+          <a class="btn btn-primary" href="mailto:tuemail@ejemplo.com">Contacto</a>
+          <a class="btn" href="https://github.com/LautaroLuchesi" target="_blank">GitHub</a>
+          <a class="btn" href="https://www.linkedin.com/in/lautaro-luchesi-1b5819329/" target="_blank">LinkedIn</a>
+        </div>
+      </div>
+
+      <aside class="profile-box">
+
+        <div class="profile-image">
+          <img src="images/perfil.jpeg" alt="Foto de Lautaro Luchesi">
+        </div>
+
+        <h3>Perfil</h3>
+
+        <div class="profile-list">
+          <p><span>Objetivo:</span> Continuar desarrollándome como Data Analyst, aplicando experiencia en análisis de
+            datos para generar información útil en la toma de decisiones.</p>
+
+          <p><span>Formación:</span> Tecnicatura Universitaria en Programación.</p>
+
+          <p><span>Enfoque:</span> Limpieza, análisis y visualización de datos orientados a la generación de insights
+            para la toma de decisiones.</p>
+
+          <p><span>Ubicación:</span> Avellaneda, Buenos Aires, Argentina.</p>
+        </div>
+
+      </aside>
+    </section>
+
+    <section class="section grid-2">
+      <article id="sobre-mi" class="card block sobre-mi">
+        <h2>Sobre mí</h2>
+        <p>
+          Me interesa trabajar con datos desde una mirada práctica,
+          enfocándome en la organización, la calidad y el análisis de la información
+          para identificar patrones y generar insights claros.
+          <br><br>
+          Busco desarrollar soluciones que, además de ser correctas técnicamente,
+          aporten valor real y sean útiles para la toma de decisiones en el negocio.
+        </p>
+      </article>
+
+      <article class="card block">
+        <h2>Habilidades</h2>
+        <div class="skills">
+          <span class="tag">SQL (consultas y análisis)</span>
+          <span class="tag">Python (Pandas, NumPy)</span>
+          <span class="tag">Análisis de datos</span>
+          <span class="tag">Limpieza y transformación de datos</span>
+          <span class="tag">Visualización de datos (Matplotlib, Power BI)</span>
+          <span class="tag">Power BI (dashboards y KPIs)</span>
+          <span class="tag">Excel (análisis y manejo de datos)</span>
+          <span class="tag">Análisis orientado a negocio</span>
+          <span class="tag">Generación de insights</span>
+          <span class="tag">Reporting</span>
+        </div>
+      </article>
+    </section>
+
+    <section id="experiencia" class="section card block">
+      <h2>Experiencia</h2>
+      <p>
+        Experiencia práctica trabajando con datos reales en entornos
+        administrativos y comerciales.
+      </p>
+
+      <div class="experience-list">
+        <article class="experience-item">
+          <strong>Data Analyst · Estudio Contable Impositivo Lobatto</strong>
+          <span class="experience-date">Julio 2025 - Actualidad</span>
+          <em>Análisis y organización de datos administrativos y comerciales</em>
+          <ul>
+            <li>Limpieza, normalización y estructuración de datos para mejorar su calidad y consistencia.</li>
+            <li>Organización de la información para facilitar su análisis y uso en la toma de decisiones.</li>
+            <li>Identificación de inconsistencias y mejora en el orden y control de los datos.</li>
+            <li>Apoyo en procesos de digitalización y optimización del manejo de información.</li>
+          </ul>
+        </article>
+
+        <article class="experience-item">
+          <strong>Data Entry · FreeLance</strong>
+          <span class="experience-date">Octubre 2023 - Abril 2025</span>
+          <em>Gestión, depuración y control de calidad de datos</em>
+          <ul>
+            <li>Carga, actualización y mantenimiento de datos en documentos y hojas de cálculo.</li>
+            <li>Limpieza, estandarización y eliminación de duplicados para mejorar la calidad de la información.</li>
+            <li>Control de consistencia y detección de errores en los datos registrados.</li>
+            <li>Optimización de la organización de la información para facilitar su uso y análisis.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="proyectos" class="section projects-header">
+      <h2>Proyectos</h2>
+      <p>
+        Casos prácticos pensados desde una necesidad de negocio: mejorar la
+        calidad de los datos, entender resultados comerciales y segmentar
+        clientes para tomar mejores decisiones.
+      </p>
+    </section>
+
+    <section class="projects">
+      <article class="card project">
+        <div class="project-grid">
+          <div class="project-body">
+            <div class="project-meta">Proyecto de análisis de datos</div>
+            <h3>Análisis de ventas</h3>
+
+            <div class="project-section">
+              <h4>Problema</h4>
+              <p>
+                Una empresa necesita entender qué productos, clientes o líneas
+                comerciales generan más valor para mejorar decisiones de venta y
+                seguimiento.
+              </p>
+            </div>
+
+            <div class="project-section">
+              <h4>Enfoque de trabajo</h4>
+              <p>
+                Realicé consultas SQL, análisis en Python y visualizaciones en Power BI para
+                transformar los datos en métricas claras, detectar patrones de
+                rendimiento y resumir hallazgos de negocio en un dashboard.
+              </p>
+            </div>
+
+            <div class="project-section">
+              <h4>Resultados</h4>
+              <ul>
+                <li>Identificación de productos y segmentos con mayor impacto en ingresos.</li>
+                <li>Construcción de métricas clave para seguimiento comercial.</li>
+                <li>Presentación visual de resultados para apoyar decisiones.</li>
+              </ul>
+            </div>
+
+            <div class="skills">
+              <span class="tag">SQL</span>
+              <span class="tag">Python</span>
+              <span class="tag">Pandas</span>
+              <span class="tag">Matplotlib</span>
+              <span class="tag">Power BI</span>
+            </div>
+
+            <div class="project-actions">
+              <a class="btn btn-primary" href="#">Ver repositorio</a>
+              <a class="btn" href="#">Ver detalle</a>
+            </div>
+          </div>
+
+          <div class="project-media">
+
+            <div class="image-block">
+              <h4 class="image-title">Visualización de resultados</h4>
+              <img src="images/ventas.png" alt="Dashboard de análisis de ventas">
+
+              <p class="image-caption">
+                Dashboard de ventas con métricas clave como ingresos totales, unidades vendidas y órdenes, junto con
+                visualizaciones que permiten analizar el rendimiento por producto y la evolución en el tiempo.
+              </p>
+
+              <p class="image-caption">
+                Permite identificar productos más rentables, patrones de comportamiento y clientes con mayor impacto en
+                ingresos, facilitando la toma de decisiones comerciales.
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </article>
+
+      <article class="card project">
+        <div class="project-grid">
+          <div class="project-body">
+            <div class="project-meta">Proyecto de preparación de datos</div>
+            <h3>Limpieza y estandarización de datos</h3>
+
+            <div class="project-section">
+              <h4>Problema</h4>
+              <p>
+                Los datos originales contenían errores de formato,
+                inconsistencias, valores duplicados y diferencias de criterio que
+                dificultaban un análisis confiable.
+              </p>
+            </div>
+
+            <div class="project-section">
+              <h4>Enfoque de trabajo</h4>
+              <p>
+                Desarrollé un proceso de limpieza, normalización y
+                estandarización para mejorar la calidad del dataset y dejar una
+                base lista para análisis posteriores y reportes.
+              </p>
+            </div>
+
+            <div class="project-section">
+              <h4>Resultados</h4>
+              <ul>
+                <li>Corrección de formatos y criterios inconsistentes.</li>
+                <li>Eliminación de duplicados y mejora de la calidad de datos.</li>
+                <li>Base depurada para análisis más preciso y útil.</li>
+              </ul>
+            </div>
+
+            <div class="skills">
+              <span class="tag">SQL</span>
+              <span class="tag">SQLite</span>
+              <span class="tag">Excel</span>
+            </div>
+
+            <div class="project-actions">
+              <a class="btn btn-primary" href="#">Ver repositorio</a>
+              <a class="btn" href="#">Ver detalle</a>
+            </div>
+          </div>
+
+          <div class="project-media">
+
+            <div class="project-images">
+
+              <div class="image-block">
+                <h4 class="image-title">Antes</h4>
+                <img src="images/limpieza_antes.png" alt="">
+                <p class="image-caption">
+                  Dataset original con problemas de calidad: duplicados, valores nulos, formatos inconsistentes y
+                  diferencias en la escritura de datos.
+                </p>
+              </div>
+
+              <div class="image-block">
+                <h4 class="image-title">Después</h4>
+                <img src="images/limpieza_despues.png" alt="">
+                <p class="image-caption">
+                  Dataset limpio y normalizado, listo para análisis: se mejoró la consistencia, se corrigieron errores y
+                  se estandarizó la información.
+                </p>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </article>
+
+      <article class="card project">
+        <div class="project-grid">
+          <div class="project-body">
+            <div class="project-meta">Proyecto de análisis comercial</div>
+            <h3>Segmentación de clientes</h3>
+
+            <div class="project-section">
+              <h4>Problema</h4>
+              <p>
+                Una empresa necesita diferenciar perfiles de clientes para
+                orientar promociones, comunicación y acciones comerciales según
+                comportamiento de consumo.
+              </p>
+            </div>
+
+            <div class="project-section">
+              <h4>Enfoque de trabajo</h4>
+              <p>
+                Analicé variables de ingreso y gasto para clasificar perfiles,
+                visualizar grupos y generar una lectura más clara del
+                comportamiento de los clientes.
+              </p>
+            </div>
+
+            <div class="project-section">
+              <h4>Resultados</h4>
+              <ul>
+                <li>Identificación de grupos con distinto potencial comercial.</li>
+                <li>Visualización de patrones de gasto e ingreso.</li>
+                <li>Base para decidir promociones o acciones segmentadas.</li>
+              </ul>
+            </div>
+
+            <div class="skills">
+              <span class="tag">Python</span>
+              <span class="tag">Pandas</span>
+              <span class="tag">Matplotlib</span>
+            </div>
+
+            <div class="project-actions">
+              <a class="btn btn-primary" href="#">Ver repositorio</a>
+              <a class="btn" href="#">Ver detalle</a>
+            </div>
+          </div>
+
+          <div class="project-media">
+
+            <div class="image-block">
+              <h4 class="image-title">Segmentación de clientes</h4>
+
+              <img src="images/segmentacion.png" alt="Gráfico de segmentación de clientes">
+
+              <p class="image-caption">
+                Visualización de segmentos de clientes basada en variables de ingreso y gasto, permitiendo identificar
+                distintos perfiles de consumo.
+              </p>
+
+              <p class="image-caption">
+                Facilita la detección de grupos con mayor potencial comercial, permitiendo orientar estrategias como
+                promociones, segmentación de ofertas y acciones de fidelización.
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+      </article>
+    </section>
+
+    <section id="contacto" class="section card footer-contact">
+      <h2>Contacto</h2>
+      <p>
+        Perfil con base técnica y experiencia práctica en análisis de datos, enfocado en transformar información en
+        insights útiles para la toma de decisiones. Disponible para nuevas oportunidades donde aportar valor a través
+        del análisis y la gestión de datos.
+      </p>
+
+      <div class="contact-actions">
+        <a class="btn btn-primary" href="lautaroluchesi00@gmail.com">Escribirme por correo</a>
+        <a class="btn" href="https://github.com/LautaroLuchesi" target="_blank">Ver GitHub</a>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    console.log("Portfolio listo para editar y subir a GitHub Pages.");
+  </script>
+</body>
+
+</html>
