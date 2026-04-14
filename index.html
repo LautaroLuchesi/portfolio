@@ -440,6 +440,113 @@
       box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
     }
 
+    @media (max-width: 768px) {
+      .nav-container {
+        width: min(var(--max), calc(100% - 20px));
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 0;
+      }
+
+      .nav-logo {
+        font-size: 1rem;
+        text-align: center;
+      }
+
+      .nav-links {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px 14px;
+      }
+
+      .nav-links a {
+        font-size: 0.95rem;
+      }
+    }
+
+    /* Hacer que las imágenes indiquen que se pueden abrir */
+    .project-media img,
+    .project-images img,
+    .profile-image img {
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .project-media img:hover,
+    .project-images img:hover,
+    .profile-image img:hover {
+      transform: scale(1.01);
+    }
+
+    /* Lightbox */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.88);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      z-index: 2000;
+    }
+
+    .lightbox.active {
+      display: flex;
+    }
+
+    .lightbox-content {
+      position: relative;
+      max-width: 95vw;
+      max-height: 95vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lightbox img {
+      max-width: 100%;
+      max-height: 90vh;
+      width: auto;
+      height: auto;
+      border-radius: 18px;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      width: 42px;
+      height: 42px;
+      border: none;
+      border-radius: 999px;
+      background: white;
+      color: #0f172a;
+      font-size: 1.5rem;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    @media (max-width: 640px) {
+      .lightbox {
+        padding: 14px;
+      }
+
+      .lightbox img {
+        max-height: 85vh;
+        border-radius: 14px;
+      }
+
+      .lightbox-close {
+        top: -6px;
+        right: -6px;
+      }
+    }
+
     @media (max-width: 980px) {
 
       .hero,
@@ -498,25 +605,6 @@
       margin-top: 16px;
       line-height: 1.7;
     }
-
-    @media (max-width: 640px) {
-
-      .hero,
-      .block,
-      .project-body,
-      .project-media,
-      .footer-contact {
-        padding: 22px;
-      }
-
-      .container {
-        width: min(var(--max), calc(100% - 20px));
-      }
-
-      h2 {
-        font-size: 1.7rem;
-      }
-    }
   </style>
 </head>
 
@@ -551,7 +639,10 @@
         </p>
 
         <div class="button-row">
-          <a class="btn btn-primary" href="mailto:tuemail@ejemplo.com">Contacto</a>
+          <a class="btn btn-primary"
+            href="mailto:lautaroluchesi00@gmail.com?subject=Contacto desde portfolio&body=Hola Lautaro, vi tu portfolio y me gustaría contactarte.">
+            Contacto
+          </a>
           <a class="btn" href="https://github.com/LautaroLuchesi" target="_blank">GitHub</a>
           <a class="btn" href="https://www.linkedin.com/in/lautaro-luchesi-1b5819329/" target="_blank">LinkedIn</a>
         </div>
@@ -883,13 +974,55 @@
           href="mailto:lautaroluchesi00@gmail.com?subject=Contacto desde portfolio&body=Hola Lautaro, vi tu portfolio y me gustaría contactarte.">
           Escribime por correo
         </a>
-        <a class="btn" href="https://github.com/LautaroLuchesi" target="_blank">Ver GitHub</a>
+        <a class="btn " href="https://github.com/LautaroLuchesi" target="_blank">Ver GitHub</a>
       </div>
     </section>
   </main>
 
+  <div class="lightbox" id="lightbox">
+    <div class="lightbox-content">
+      <button class="lightbox-close" id="lightboxClose" aria-label="Cerrar imagen">×</button>
+      <img id="lightboxImg" src="" alt="Vista ampliada">
+    </div>
+  </div>
+
   <script>
-    console.log("Portfolio listo para editar y subir a GitHub Pages.");
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightboxImg");
+    const lightboxClose = document.getElementById("lightboxClose");
+
+    const clickableImages = document.querySelectorAll(
+      ".project-media img, .project-images img"
+    );
+
+    clickableImages.forEach((img) => {
+      img.addEventListener("click", () => {
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt || "Imagen ampliada";
+        lightbox.classList.add("active");
+        document.body.style.overflow = "hidden";
+      });
+    });
+
+    function closeLightbox() {
+      lightbox.classList.remove("active");
+      lightboxImg.src = "";
+      document.body.style.overflow = "";
+    }
+
+    lightboxClose.addEventListener("click", closeLightbox);
+
+    lightbox.addEventListener("click", (e) => {
+      if (e.target === lightbox) {
+        closeLightbox();
+      }
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && lightbox.classList.contains("active")) {
+        closeLightbox();
+      }
+    });
   </script>
 </body>
 
